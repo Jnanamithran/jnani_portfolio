@@ -1,6 +1,6 @@
 # Project V.I.P.E.R.: Autonomous NDT in Subterranean Environments
 
-*March 26, 2026 · 12 min read*
+*March 26, 2026 · 10 min read*
 
 ---
 

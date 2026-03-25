@@ -1,6 +1,6 @@
 # Project Sovereign Woodcraft: Building a Full-Stack E-Commerce Platform
 
-*March 26, 2026 · 15 min read*
+*March 26, 2026 · 12 min read*
 
 ---
 

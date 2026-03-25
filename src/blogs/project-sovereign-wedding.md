@@ -1,6 +1,6 @@
 # Wedding Invitation Website: Real-Time Guest Management System
 
-*March 26, 2026 · 15 min read*
+*March 26, 2026 · 12 min read*
 
 ---
 
