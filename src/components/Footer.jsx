@@ -31,7 +31,7 @@ export default function Footer() {
             </svg>
           </a>
           <a
-            href="mailto:hello@jn4ni.dev"
+            href="mailto:jnanamithranm@gmail.com"
             className="transition-opacity duration-200 hover:opacity-60"
             style={{ color: 'var(--fg-muted)' }}
             aria-label="Email"
