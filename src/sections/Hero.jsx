@@ -102,7 +102,7 @@ export default function Hero() {
         <div
           className="mb-6 flex justify-center"
           style={{
-            width: 'clamp(200px, 35vw, 520px)',
+            width: 'clamp(290px, 35vw, 520px)',
             opacity: showSub ? 1 : 0,
             transform: showSub ? 'translateY(0)' : 'translateY(16px)',
             transition: 'all 0.5s ease',
