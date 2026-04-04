@@ -19,7 +19,7 @@ export const projects = [
     image: null,
     demo: null,
     github: null,
-    blog: null,
+    blog: 'project-viper-autonomous-ndt',
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const projects = [
     image: null,
     demo: 'https://weddingdetails.vercel.app/',
     github: 'https://github.com/Jnanamithran/Marriage-Invitation',
-    blog: null,
+    blog: 'wedding-invitation-website',
   },
   {
     id: 4,
@@ -41,6 +41,6 @@ export const projects = [
     image: null,
     demo: 'https://toothsavvy-vite.vercel.app/',
     github: 'https://github.com/Jnanamithran/toothsavvy-vite',
-    blog: null,
+    blog: 'toothsavvy-dental-clinic',
   },
 ];
