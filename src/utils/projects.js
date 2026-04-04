@@ -1,6 +1,17 @@
 export const projects = [
   {
     id: 1,
+    title: 'LeafyLoop',
+    description:
+      'A production-grade e-commerce platform for Kerala\'s plant lovers. Features region-aware shipping logic, Razorpay integration with HMAC-SHA256 verification, Redux state management, and a mobile-first UX with Framer Motion animations.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Razorpay', 'Redux'],
+    image: null,
+    demo: null,
+    github: 'https://github.com/Jnanamithran/leafyloop',
+    blog: 'project-leafyloop-ecommerce',
+  },
+  {
+    id: 2,
     title: 'V.I.P.E.R.',
     description:
       'Visual Inspection & Pipe Exploration Rover. A hardware-software integration project featuring a crawler robot for subterranean pipe inspection. Developed the interface to bridge physical sensor data with digital monitoring.',
@@ -8,17 +19,6 @@ export const projects = [
     image: null,
     demo: null,
     github: null,
-    blog: null,
-  },
-  {
-    id: 2,
-    title: 'Sovereign Woodcraft',
-    description:
-      'A full-stack e-commerce platform designed for high-end woodcraft products. Features a robust backend for inventory management and a performance-optimized frontend to ensure a seamless shopping experience.',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    image: null,
-    demo: 'https://sovereign-woodcraft-v2.vercel.app/',
-    github: 'https://github.com/Jnanamithran/sovereign-woodcraft-v2',
     blog: null,
   },
   {

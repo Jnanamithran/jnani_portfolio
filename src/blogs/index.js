@@ -1,5 +1,13 @@
 export const blogs = [
   {
+    slug: 'project-leafyloop-ecommerce',
+    title: 'Project LeafyLoop: Building a Production-Grade E-commerce Platform for Kerala\'s Plant Lovers',
+    date: '2026-04-04',
+    description: 'Building a region-aware e-commerce platform with React, Node.js, MongoDB, and Razorpay integration, featuring hyperlocal shipping logic and mobile-first UX.',
+    tags: ['Full-Stack', 'E-commerce', 'React', 'Node.js', 'MongoDB', 'Razorpay'],
+    readTime: '12 min read',
+  },
+  {
     slug: 'project-viper-autonomous-ndt',
     title: 'Project V.I.P.E.R.: Autonomous NDT in Subterranean Environments',
     date: '2026-03-26',
@@ -22,13 +30,5 @@ export const blogs = [
     description: 'Building a role-based dental clinic management system with React frontend, Context API state management, and responsive design for seamless patient care.',
     tags: ['Frontend', 'Healthcare', 'React', 'Context API', 'Role-Based'],
     readTime: '10 min read',
-  },
-  {
-    slug: 'project-sovereign-woodcraft',
-    title: 'Project Sovereign Woodcraft: Building a Full-Stack E-Commerce Platform',
-    date: '2025-09-02',
-    description: 'Building a full-stack e-commerce platform for artisanal woodworking, featuring React frontend, Node.js backend, and MongoDB database.',
-    tags: ['Full-Stack', 'E-commerce', 'React', 'Node.js', 'MongoDB'],
-    readTime: '12 min read',
   },
 ];
