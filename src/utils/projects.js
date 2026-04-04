@@ -18,7 +18,7 @@ export const projects = [
     tags: ['Python', 'React', 'Arduino', 'Embedded Systems'],
     image: null,
     demo: null,
-    github: null,
+    github: 'https://github.com/Jnanamithran/V.I.P.E.R',
     blog: '/blog/project-viper-autonomous-ndt',
   },
   {
