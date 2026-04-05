@@ -27,25 +27,31 @@ export default function About() {
               className="font-display leading-none uppercase"
               style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', color: 'var(--fg)' }}
             >
-              Crafting systems that scale.
+              Building solutions that last.
             </h2>
 
             <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              I’m a Full-Stack Developer and Computer Science student at the intersection of
-              engineering rigour and product thinking. I care as much about why something is built
-              as how it functions.
+              I’m <strong>Jnanamithran M</strong>, a Full-Stack Developer and third-year Computer Science
+              & Engineering undergraduate at APJ Abdul Kalam Technological University (KTU).
+              I approach software development with both engineering precision and user-centric thinking.
             </p>
 
             <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              My work focuses on building reliable, well-architected systems—from performance-first
-              React applications to robust backend infrastructures. When I’m not writing code, I’m
-              usually breaking down technical decisions, architecture trade-offs, and the lessons
-              learned from shipping real-world projects.
+              My work focuses on architecting reliable, maintainable systems — from high-performance
+              frontend applications to scalable backend infrastructures. I believe that good software
+              is not just about working code, but about thoughtful design, clear abstractions and
+              intentional trade-offs.
             </p>
 
             <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              Currently focused on distributed systems, developer tooling, and mastering AngularJS
-              alongside modern web standards.
+              Beyond academics, I actively build and ship real-world projects, continuously
+              expanding my expertise in distributed systems, cloud architecture and modern web
+              standards. I prioritize writing code that other developers can understand, extend and maintain.
+            </p>
+
+            <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
+              Currently exploring systems design, developer tooling and real-time application architectures
+              while completing my undergraduate degree.
             </p>
 
             <a href="#contact" className="btn-primary inline-block mt-4">
@@ -56,7 +62,7 @@ export default function About() {
           {/* Right: image + stack */}
           <div className="space-y-10">
 
-            {/* ✅ IMAGE BLOCK (UNCHANGED) */}
+            {/* Profile Image */}
             <div className="reveal" ref={useReveal()}>
               <div
                 className="relative w-48 h-48 md:w-56 md:h-56 group overflow-hidden"
@@ -64,7 +70,7 @@ export default function About() {
               >
                 <img
                   src="/profile.jpg"
-                  alt="Profile"
+                  alt="Jnanamithran M"
                   className="w-full h-full object-cover transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-105"
                 />
 
@@ -77,9 +83,9 @@ export default function About() {
               </div>
             </div>
 
-            {/* Stack */}
+            {/* Technology Stack */}
             <div ref={stackRef} className="stagger-children reveal">
-              <p className="section-label mb-4">Stack</p>
+              <p className="section-label mb-4">Technical Stack</p>
               <div className="flex flex-wrap gap-2">
                 {STACK.map((tech) => (
                   <span key={tech} className="tag">{tech}</span>
