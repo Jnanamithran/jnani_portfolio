@@ -1,4 +1,4 @@
-# 🌿 LeafyLoop: Building a Production-Grade E-commerce Platform for Kerala's Plant Lovers
+# LeafyLoop: Building an E-commerce Platform for Kerala’s Plant Lovers
 
 *April 4, 2026 · 12 min read*
 

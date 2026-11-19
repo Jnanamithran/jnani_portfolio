@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './utils/ThemeContext';
@@ -5,8 +6,18 @@ import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import BlogPost from './pages/BlogPost';
 import NotFound from './pages/NotFound';
+
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const EkipCaseStudy = lazy(() => import('./pages/EkipCaseStudy'));
+
+function RouteFallback() {
+  return (
+    <div className="route-fallback" role="status">
+      Loading page…
+    </div>
+  );
+}
 
 function Layout() {
   const location = useLocation();
@@ -14,9 +25,6 @@ function Layout() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Grain overlay */}
-      <div className="grain-overlay" aria-hidden="true" />
-
       <Navbar />
       <main style={{ flex: 1 }}>
         <AnimatePresence mode="wait" initial={false}>
@@ -29,7 +37,22 @@ function Layout() {
           >
             <Routes location={location}>
               <Route path="/" element={<Home />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route
+                path="/projects/ekip"
+                element={
+                  <Suspense fallback={<RouteFallback />}>
+                    <EkipCaseStudy />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/blog/:slug"
+                element={
+                  <Suspense fallback={<RouteFallback />}>
+                    <BlogPost />
+                  </Suspense>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </motion.div>
@@ -43,7 +66,12 @@ function Layout() {
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <ScrollProgress />
         <Layout />
       </BrowserRouter>

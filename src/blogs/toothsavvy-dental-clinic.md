@@ -1,7 +1,5 @@
 # ToothSavvy: Building a Modern Dental Clinic Management System
 
-*March 26, 2026 · 10 min read*
-
 ---
 
 ## Problem Definition

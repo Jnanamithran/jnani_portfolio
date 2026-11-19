@@ -1,7 +1,7 @@
 // EmailJS implementation for sending contact messages
 import emailjs from '@emailjs/browser';
 
-export async function sendContactMessage({ name, email, subject, message }) {
+export async function sendContactMessage({ name, email, message }) {
   try {
     // Initialize EmailJS with your public key
     if (typeof window !== 'undefined') {
@@ -22,7 +22,7 @@ export async function sendContactMessage({ name, email, subject, message }) {
     const formData = {
       name: name,
       user_email: email,
-      subject: subject,
+      subject: `Portfolio inquiry from ${name}`,
       message: message,
       time: currentTime,
       to_name: 'Jnanamithran',

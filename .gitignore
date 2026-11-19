@@ -11,6 +11,7 @@ dist/
 dist-ssr/
 build/
 out/
+src/assets/photos-optimized/
 
 # Environment variables
 .env

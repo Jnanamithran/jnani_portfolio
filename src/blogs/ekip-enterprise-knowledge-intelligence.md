@@ -1,4 +1,4 @@
-# EKIP: Building a Local-First Enterprise Knowledge Intelligence Platform
+# Building EKIP: An Enterprise Knowledge Intelligence Platform from Scratch
 
 *November 19, 2026 · 8 min read*
 

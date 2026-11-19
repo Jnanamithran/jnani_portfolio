@@ -1,7 +1,5 @@
 # Wedding Invitation Website: Real-Time Guest Management System
 
-*March 26, 2026 · 12 min read*
-
 ---
 
 ## Problem Definition

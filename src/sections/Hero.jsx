@@ -1,172 +1,114 @@
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useTheme } from '../utils/ThemeContext';
 
 const ROLES = ['Developer', 'Designer', 'Builder'];
 
-function RotatingRole() {
+function RotatingRole({ reduceMotion }) {
   const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const cycle = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex(i => (i + 1) % ROLES.length);
-        setVisible(true);
-      }, 400);
-    }, 2200);
-
-    return () => clearInterval(cycle);
-  }, []);
+    if (reduceMotion) return undefined;
+    const timer = window.setInterval(() => {
+      setIndex(current => (current + 1) % ROLES.length);
+    }, 2800);
+    return () => window.clearInterval(timer);
+  }, [reduceMotion]);
 
   return (
-    <span
-      className="inline-block transition-all duration-300 font-mono text-sm tracking-[0.25em] uppercase"
-      style={{
-        color: 'var(--fg-muted)',
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(-8px)',
-      }}
-    >
-      {ROLES[index]}
+    <span className="hero-role" aria-live="off">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={ROLES[index]}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
+          transition={{ duration: reduceMotion ? 0 : 0.3 }}
+        >
+          {ROLES[index]}
+        </motion.span>
+      </AnimatePresence>
     </span>
   );
 }
 
 export default function Hero() {
-  const [showSub, setShowSub] = useState(false);
-  const [showRole, setShowRole] = useState(false);
-  const [showCta, setShowCta] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const { dark } = useTheme();
+  const reduceMotion = useReducedMotion();
 
-  // Detect theme
-  useEffect(() => {
-    const checkTheme = () => {
-      const hasDark = document.documentElement.classList.contains('dark');
-      setIsDark(hasDark);
-    };
+  const handlePointerMove = event => {
+    if (reduceMotion || event.pointerType !== 'mouse') return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-    checkTheme();
+    const bounds = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty('--pointer-x', `${event.clientX - bounds.left}px`);
+    event.currentTarget.style.setProperty('--pointer-y', `${event.clientY - bounds.top}px`);
+  };
 
-    // Observe class changes (for toggle)
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Animation sequence
-  useEffect(() => {
-    setTimeout(() => setShowSub(true), 200);
-    setTimeout(() => setShowRole(true), 500);
-    setTimeout(() => setShowCta(true), 800);
-  }, []);
+  const handlePointerLeave = event => {
+    event.currentTarget.style.removeProperty('--pointer-x');
+    event.currentTarget.style.removeProperty('--pointer-y');
+  };
 
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden"
+      className="hero-stage px-6"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
     >
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(var(--border) 1px, transparent 1px),
-            linear-gradient(90deg, var(--border) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px',
-          opacity: 0.3,
-        }}
-      />
-
-      {/* Corner accents */}
-      <div className="absolute top-24 left-8 w-8 h-8 border-l border-t" style={{ borderColor: 'var(--border)' }} />
-      <div className="absolute top-24 right-8 w-8 h-8 border-r border-t" style={{ borderColor: 'var(--border)' }} />
-      <div className="absolute bottom-16 left-8 w-8 h-8 border-l border-b" style={{ borderColor: 'var(--border)' }} />
-      <div className="absolute bottom-16 right-8 w-8 h-8 border-r border-b" style={{ borderColor: 'var(--border)' }} />
-
-      <div className="relative z-10 max-w-4xl mx-auto">
-
-        {/* Rotating role */}
-        <div
-          className="mb-6 h-5 transition-all duration-500"
-          style={{ opacity: showRole ? 1 : 0 }}
+      <div className="hero-content">
+        <motion.div
+          className="hero-role-line"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.45, delay: reduceMotion ? 0 : 0.08 }}
         >
-          <RotatingRole />
-        </div>
+          <RotatingRole reduceMotion={reduceMotion} />
+        </motion.div>
 
-        {/* ✅ Theme-based logo */}
-        <div
-          className="mb-6 flex justify-center"
-          style={{
-            width: 'clamp(290px, 35vw, 520px)',
-            opacity: showSub ? 1 : 0,
-            transform: showSub ? 'translateY(0)' : 'translateY(16px)',
-            transition: 'all 0.5s ease',
-          }}
+        <motion.h1
+          className="hero-logo"
+          initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.14, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src={isDark ? '/icons1.svg' : '/icons2.svg'}
-            alt="JN4NI logo"
-            className="w-full h-auto object-contain"
+            src={dark ? '/icons1.svg' : '/icons2.svg'}
+            alt="JN4NI — Jnanamithran M"
           />
-        </div>
+        </motion.h1>
 
-        {/* Subtitle */}
-        <p
-          className="text-sm md:text-base max-w-xl mx-auto font-mono tracking-wide leading-relaxed transition-all duration-700"
-          style={{
-            color: 'var(--fg-muted)',
-            opacity: showSub ? 1 : 0,
-            transform: showSub ? 'translateY(0)' : 'translateY(16px)',
-          }}
+        <motion.p
+          className="hero-tagline"
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : 0.3 }}
         >
           I build systems, not just websites.
-        </p>
+        </motion.p>
 
-        {/* CTA */}
-        <div
-          className="mt-10 flex items-center justify-center gap-4 flex-wrap transition-all duration-700"
-          style={{
-            opacity: showCta ? 1 : 0,
-            transform: showCta ? 'translateY(0)' : 'translateY(16px)',
-          }}
+        <motion.div
+          className="hero-actions"
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : 0.44 }}
         >
           <a href="#projects" className="btn-primary">View Work</a>
           <a href="#contact" className="btn-ghost">Get in Touch</a>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-700"
-        style={{ opacity: showCta ? 0.4 : 0 }}
+      <motion.a
+        href="#about"
+        className="hero-scroll"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : 0.8 }}
       >
-        <span className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
-          Scroll
-        </span>
-
-        <div className="w-px h-8 relative overflow-hidden" style={{ background: 'var(--border)' }}>
-          <div
-            className="absolute top-0 left-0 w-full"
-            style={{
-              height: '40%',
-              background: 'var(--accent)',
-              animation: 'scrollDot 1.5s ease-in-out infinite',
-            }}
-          />
-        </div>
-
-        <style>{`
-          @keyframes scrollDot {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(350%); }
-          }
-        `}</style>
-      </div>
+        <span>Scroll to explore</span>
+        {!reduceMotion && <span className="hero-scroll-line" aria-hidden="true" />}
+      </motion.a>
     </section>
   );
 }

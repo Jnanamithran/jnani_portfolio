@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { blogs } from '../blogs/index';
 
-// Eagerly import all markdown files
 const markdownFiles = import.meta.glob('../blogs/*.md', { query: '?raw', import: 'default' });
 
 export default function BlogPost() {
@@ -18,18 +17,34 @@ export default function BlogPost() {
   useEffect(() => {
     if (!meta) {
       navigate('/404', { replace: true });
-      return;
+      return undefined;
     }
-    const key = `../blogs/${slug}.md`;
-    if (markdownFiles[key]) {
-      markdownFiles[key]().then(raw => {
+
+    const key = `../blogs/${meta.file || `${slug}.md`}`;
+    const loadPost = markdownFiles[key];
+    if (!loadPost) {
+      navigate('/404', { replace: true });
+      return undefined;
+    }
+
+    let active = true;
+    document.title = `${meta.title} | JN4NI`;
+    setLoading(true);
+    setContent('');
+    loadPost().then(raw => {
+      if (active) {
         setContent(raw);
         setLoading(false);
-      });
-    } else {
-      navigate('/404', { replace: true });
-    }
+      }
+    }, () => {
+      if (active) navigate('/404', { replace: true });
+    });
     window.scrollTo(0, 0);
+
+    return () => {
+      active = false;
+      document.title = 'Jnanamithran M | JN4NI — Full-Stack Developer & Designer';
+    };
   }, [slug, meta, navigate]);
 
   if (loading) {
@@ -43,11 +58,16 @@ export default function BlogPost() {
   }
 
   const formatted = meta
-    ? new Date(meta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    ? new Date(`${meta.date}T00:00:00Z`).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC',
+      })
     : '';
 
   return (
-    <main className="min-h-screen px-6 pt-32 pb-24">
+    <article className="min-h-screen px-6 pt-32 pb-24">
       <div className="max-w-2xl mx-auto">
         {/* Back */}
         <Link
@@ -69,6 +89,8 @@ export default function BlogPost() {
               <span className="font-mono text-xs" style={{ color: 'var(--fg-muted)' }}>{formatted}</span>
               <span style={{ color: 'var(--border)' }}>·</span>
               <span className="font-mono text-xs" style={{ color: 'var(--fg-muted)' }}>{meta.readTime}</span>
+              <span style={{ color: 'var(--border)' }}>·</span>
+              <span className="font-mono text-xs" style={{ color: 'var(--fg-muted)' }}>{meta.category}</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
               {meta.tags.map(tag => (
@@ -224,6 +246,6 @@ export default function BlogPost() {
           font-weight: 600;
         }
       `}</style>
-    </main>
+    </article>
   );
 }

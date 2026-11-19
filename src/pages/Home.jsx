@@ -1,34 +1,48 @@
-import { lazy, Suspense } from 'react';
-import { GithubContributionsProvider } from '../utils/GithubContributionsContext';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Hero from '../sections/Hero';
-import DeveloperDashboard from '../sections/DeveloperDashboard';
 import About from '../sections/About';
 import Projects from '../sections/Projects';
 import Blogs from '../sections/Blogs';
-import CurrentlyBuilding from '../sections/CurrentlyBuilding';
-import InteractiveTerminal from '../sections/InteractiveTerminal';
 import BeyondCode from '../sections/BeyondCode';
 import Contact from '../sections/Contact';
 
-const GithubActivity = lazy(() => import('../sections/GithubActivity'));
-
 export default function Home() {
+  const { hash, pathname, key } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      if (pathname === '/') window.scrollTo({ top: 0, behavior: 'auto' });
+      return undefined;
+    }
+
+    const targetId = decodeURIComponent(hash.slice(1));
+    let secondFrame;
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth';
+        target.scrollIntoView({ behavior, block: 'start' });
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      if (secondFrame) window.cancelAnimationFrame(secondFrame);
+    };
+  }, [hash, key, pathname]);
+
   return (
-    <GithubContributionsProvider>
-      <>
-        <Hero />
-        <DeveloperDashboard />
-        <About />
-        <Projects />
-        <Blogs />
-        <CurrentlyBuilding />
-        <InteractiveTerminal />
-        <BeyondCode />
-        <Suspense fallback={<div className="py-12 text-center font-mono text-xs" style={{ color: 'var(--fg-muted)' }}>Loading GitHub activity…</div>}>
-          <GithubActivity />
-        </Suspense>
-        <Contact />
-      </>
-    </GithubContributionsProvider>
+    <>
+      <Hero />
+      <About />
+      <Projects />
+      <Blogs />
+      <BeyondCode />
+      <Contact />
+    </>
   );
 }

@@ -1,98 +1,59 @@
 import { useReveal } from '../utils/useReveal';
 
-const STACK = [
-  'React', 'Node.js', 'TypeScript', 'PostgreSQL',
-  'Redis', 'Docker', 'WebSockets', 'Tailwind CSS',
+const DETAILS = [
+  { label: 'Based in', value: 'Kerala, India' },
+  { label: 'Exploring', value: 'Systems design · developer tooling · real-time apps' },
+  { label: 'Availability', value: 'Open to opportunities' },
 ];
 
 export default function About() {
   const sectionRef = useReveal();
-  const stackRef = useReveal(0.1);
+  const textRef = useReveal();
+  const portraitRef = useReveal(0.1);
 
   return (
-    <section id="about" className="py-28 px-6">
-      <div className="max-w-5xl mx-auto">
-
-        {/* Section label */}
-        <div ref={sectionRef} className="reveal mb-16">
-          <span className="section-label">02 — About</span>
-          <div className="mt-3 w-10 h-px" style={{ background: 'var(--accent)' }} />
+    <section id="about" className="section-space px-6">
+      <div className="content-width">
+        <div ref={sectionRef} className="reveal section-heading">
+          <div>
+            <span className="section-label">01 — About</span>
+            <div className="section-rule" />
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-
-          {/* Left: text */}
-          <div className="reveal space-y-6" ref={useReveal()}>
-            <h2
-              className="font-display leading-none uppercase"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', color: 'var(--fg)' }}
-            >
-              Building solutions that last.
-            </h2>
-
-            <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              I’m <strong>Jnanamithran M</strong>, a Full-Stack Developer and third-year Computer Science
-              & Engineering undergraduate at APJ Abdul Kalam Technological University (KTU).
-              I approach software development with both engineering precision and user-centric thinking.
-            </p>
-
-            <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              My work focuses on architecting reliable, maintainable systems — from high-performance
-              frontend applications to scalable backend infrastructures. I believe that good software
-              is not just about working code, but about thoughtful design, clear abstractions and
-              intentional trade-offs.
-            </p>
-
-            <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              Beyond academics, I actively build and ship real-world projects, continuously
-              expanding my expertise in distributed systems, cloud architecture and modern web
-              standards. I prioritize writing code that other developers can understand, extend and maintain.
-            </p>
-
-            <p className="font-body text-base leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
-              Currently exploring systems design, developer tooling and real-time application architectures
-              while completing my undergraduate degree.
-            </p>
-
-            <a href="#contact" className="btn-primary inline-block mt-4">
-              Let's Build Together
-            </a>
+        <div className="about-layout">
+          <div ref={portraitRef} className="reveal about-portrait-wrap">
+            <div className="about-portrait">
+              <img src="/profile.jpg" alt="Jnanamithran M" loading="lazy" decoding="async" />
+              <span className="about-portrait-caption">JNANAMITHRAN M · KERALA, INDIA</span>
+            </div>
+            <span className="about-portrait-index" aria-hidden="true">01 / 04</span>
           </div>
 
-          {/* Right: image + stack */}
-          <div className="space-y-10">
+          <div ref={textRef} className="reveal about-copy">
+            <h2 className="display-heading">Developer.<br />Designer.<br /><span>Builder.</span></h2>
+            <p>
+              I’m Jnanamithran M, a third-year Computer Science &amp; Engineering undergraduate
+              at APJ Abdul Kalam Technological University (KTU), based in Kerala, India.
+            </p>
+            <p>
+              I like taking software from a real problem to a clear, dependable product.
+              I’m especially interested in full-stack systems, AI-enabled knowledge tools,
+              and the design decisions that make complex products easier to use and maintain.
+            </p>
 
-            {/* Profile Image */}
-            <div className="reveal" ref={useReveal()}>
-              <div
-                className="relative w-48 h-48 md:w-56 md:h-56 group overflow-hidden"
-                style={{ border: '1px solid var(--border)' }}
-              >
-                <img
-                  src="/profile.jpg"
-                  alt="Jnanamithran M"
-                  className="w-full h-full object-cover transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-105"
-                />
-
-                <div
-                  className="absolute bottom-0 left-0 right-0 py-2 text-center font-mono text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}
-                >
-                  JNANAMITHRAN M
+            <dl className="about-details">
+              {DETAILS.map(detail => (
+                <div className="about-detail" key={detail.label}>
+                  <dt>{detail.label}</dt>
+                  <dd>{detail.value}</dd>
                 </div>
-              </div>
-            </div>
+              ))}
+            </dl>
 
-            {/* Technology Stack */}
-            <div ref={stackRef} className="stagger-children reveal">
-              <p className="section-label mb-4">Technical Stack</p>
-              <div className="flex flex-wrap gap-2">
-                {STACK.map((tech) => (
-                  <span key={tech} className="tag">{tech}</span>
-                ))}
-              </div>
-            </div>
-
+            <a href="#contact" className="text-link about-contact-link">
+              Start a conversation <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
       </div>
