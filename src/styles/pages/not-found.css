@@ -1,0 +1,37 @@
+
+  .not-found-page {
+    display: flex;
+    min-height: 75vh;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: min(calc(100% - var(--space-page) * 2), 50rem);
+    margin-inline: auto;
+    padding-block: 8rem;
+  }
+
+  .not-found-kicker {
+    margin: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .not-found-code {
+    margin: 0.5rem 0 0;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 26vw, 18rem);
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    line-height: 0.8;
+  }
+
+  .not-found-copy {
+    max-width: 32rem;
+    margin: 1.75rem 0 2rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }

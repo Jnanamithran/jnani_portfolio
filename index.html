@@ -7,28 +7,45 @@
 
     <!-- ── Primary SEO ──────────────────────────────────────── -->
     <title>Jnanamithran M | JN4NI — Full-Stack Developer & Designer</title>
-    <meta name="description" content="Jnanamithran M (JN4NI) — developer, designer, and Computer Science undergraduate in Kerala. I build systems, not just websites." />
+    <meta name="description" content="Jnanamithran M (JN4NI) — Computer Science undergraduate in Kerala building full-stack projects and AI-enabled tools." />
     <meta name="keywords" content="Jnanamithran, Jnanamithran M, JN4NI, jnanamithran portfolio, full stack developer, web developer, React developer, jnanamithranm, software engineer" />
     <meta name="author" content="Jnanamithran M" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://jn4n1.vercel.app" />
+    <link rel="canonical" href="https://jn4n1.vercel.app/" />
+
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      } catch (error) {
+        console.error('Unable to read the saved theme preference.', error);
+      }
+    </script>
 
     <!-- ── Open Graph (LinkedIn / Facebook preview) ─────────── -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jn4n1.vercel.app" />
     <meta property="og:title" content="Jnanamithran M | JN4NI — Full-Stack Developer" />
-    <meta property="og:description" content="I build systems, not just websites. Full-Stack Developer specialising in React, Node.js, and distributed systems." />
-    <meta property="og:image" content="https://jn4n1.vercel.app/profile.jpg" />
+    <meta property="og:description" content="Computer Science undergraduate in Kerala building full-stack projects and AI-enabled tools." />
+    <meta property="og:image" content="https://jn4n1.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Portrait of Jnanamithran outdoors among plants." />
     <meta property="og:site_name" content="JN4NI Portfolio" />
     <meta property="og:locale" content="en_IN" />
 
     <!-- ── Twitter / X Card ──────────────────────────────────── -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jnanamithran" />
-    <meta name="twitter:url" content="https://jn4n1.vercel.app" />
+    <meta name="twitter:url" content="https://jn4n1.vercel.app/" />
     <meta name="twitter:title" content="Jnanamithran M | JN4NI — Full-Stack Developer" />
-    <meta name="twitter:description" content="I build systems, not just websites. Full-Stack Developer specialising in React, Node.js, and distributed systems." />
-    <meta name="twitter:image" content="https://jn4n1.vercel.app/profile.jpg" />
+    <meta name="twitter:description" content="Computer Science undergraduate in Kerala building full-stack projects and AI-enabled tools." />
+    <meta name="twitter:image" content="https://jn4n1.vercel.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Portrait of Jnanamithran outdoors among plants." />
 
     <!-- ── Schema.org Structured Data (JSON-LD) ─────────────── -->
     <script type="application/ld+json">
@@ -39,9 +56,9 @@
       "alternateName": "JN4NI",
       "url": "https://jn4n1.vercel.app",
       "email": "jnanamithranm@gmail.com",
-      "jobTitle": "Full-Stack Developer",
-      "description": "Full-Stack Developer and CS student. I build systems, not just websites. Specialising in React, Node.js, TypeScript, and distributed systems.",
-      "knowsAbout": ["React", "Node.js", "TypeScript", "PostgreSQL", "Redis", "Docker", "WebSockets", "Tailwind CSS"],
+      "jobTitle": "Computer Science and Engineering Undergraduate",
+      "description": "Computer Science and Engineering undergraduate building full-stack projects and AI-enabled tools.",
+      "knowsAbout": ["React", "Node.js", "Express", "Python", "FastAPI", "PostgreSQL", "Qdrant", "Ollama", "MongoDB", "Razorpay", "Arduino"],
       "sameAs": [
         "https://github.com/Jnanamithran",
         "https://www.linkedin.com/in/jnanamithran/",
@@ -54,7 +71,7 @@
     <!-- ── Fonts ─────────────────────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

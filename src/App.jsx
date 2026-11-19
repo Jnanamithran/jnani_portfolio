@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, LazyMotion, domAnimation, m as motion, useReducedMotion } from 'framer-motion';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './utils/ThemeContext';
 import ScrollProgress from './components/ScrollProgress';
@@ -24,9 +24,10 @@ function Layout() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="app-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar />
-      <main style={{ flex: 1 }}>
+      <main id="main-content" className="app-main" tabIndex="-1">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={location.pathname}
@@ -66,15 +67,17 @@ function Layout() {
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
-      >
-        <ScrollProgress />
-        <Layout />
-      </BrowserRouter>
+      <LazyMotion features={domAnimation}>
+        <BrowserRouter
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
+          <ScrollProgress />
+          <Layout />
+        </BrowserRouter>
+      </LazyMotion>
     </ThemeProvider>
   );
 }

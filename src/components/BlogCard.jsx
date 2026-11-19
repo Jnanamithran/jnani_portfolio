@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Tag from './ui/Tag';
 
 export default function BlogCard({ blog, formatDate }) {
   return (
@@ -10,10 +11,10 @@ export default function BlogCard({ blog, formatDate }) {
           <span>{blog.category}</span>
           <span>{blog.readTime}</span>
         </div>
-        <h3>{blog.title}</h3>
+        <h4>{blog.title}</h4>
         <p>{blog.description}</p>
         <div className="project-card-tags">
-          {blog.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}
+          {blog.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
         </div>
       </div>
       <span className="journal-card-arrow" aria-hidden="true">↗</span>

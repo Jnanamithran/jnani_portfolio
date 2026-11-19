@@ -1,27 +1,20 @@
-import { useReveal } from '../utils/useReveal';
+import SectionHeading from '../components/ui/SectionHeading';
 import { projects } from '../utils/projects';
 import ProjectCard from '../components/ProjectCard';
 
 const [featuredProject, ...otherProjects] = projects;
 
 export default function Projects() {
-  const sectionRef = useReveal();
-  const projectsRef = useReveal(0.05);
-
   return (
-    <section id="projects" className="section-space px-6" style={{ background: 'var(--bg-alt)' }}>
+    <section id="projects" className="section-space section-alt px-6">
       <div className="content-width">
-        <div ref={sectionRef} className="reveal section-heading">
-          <div>
-            <span className="section-label">02 — Work</span>
-            <div className="section-rule" />
-          </div>
-          <p className="section-intro">
-            Systems, interfaces, and experiments built around real problems.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="02 / Work"
+          title="Selected work."
+          description="Case studies across full-stack products, AI-enabled tools, and connected hardware."
+        />
 
-        <div ref={projectsRef} className="reveal project-list">
+        <div className="project-list">
           <ProjectCard project={featuredProject} featured />
           <div className="project-grid">
             {otherProjects.map(project => (

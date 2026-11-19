@@ -1,4 +1,6 @@
-import { useReveal } from '../utils/useReveal';
+import SectionHeading from '../components/ui/SectionHeading';
+import Button from '../components/ui/Button';
+import aboutPortrait from '../assets/photos-optimized/IMG-20261019-WA0061.webp';
 
 const DETAILS = [
   { label: 'Based in', value: 'Kerala, India' },
@@ -7,35 +9,36 @@ const DETAILS = [
 ];
 
 export default function About() {
-  const sectionRef = useReveal();
-  const textRef = useReveal();
-  const portraitRef = useReveal(0.1);
-
   return (
-    <section id="about" className="section-space px-6">
+    <section id="about" className="section-space about-section">
       <div className="content-width">
-        <div ref={sectionRef} className="reveal section-heading">
-          <div>
-            <span className="section-label">01 — About</span>
-            <div className="section-rule" />
-          </div>
-        </div>
+        <SectionHeading
+          eyebrow="01 / About"
+          title="A little context."
+          description="I care about the thinking behind software as much as the interface people use."
+        />
 
         <div className="about-layout">
-          <div ref={portraitRef} className="reveal about-portrait-wrap">
-            <div className="about-portrait">
-              <img src="/profile.jpg" alt="Jnanamithran M" loading="lazy" decoding="async" />
-              <span className="about-portrait-caption">JNANAMITHRAN M · KERALA, INDIA</span>
-            </div>
-            <span className="about-portrait-index" aria-hidden="true">01 / 04</span>
-          </div>
+          <figure className="about-portrait">
+            <img
+              src={aboutPortrait}
+              alt="Black-and-white portrait of Jnani outdoors at night"
+              width="1800"
+              height="1013"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>JN4NI</span>
+              <span>KERALA, INDIA</span>
+            </figcaption>
+          </figure>
 
-          <div ref={textRef} className="reveal about-copy">
-            <h2 className="display-heading">Developer.<br />Designer.<br /><span>Builder.</span></h2>
-            <p>
-              I’m Jnanamithran M, a third-year Computer Science &amp; Engineering undergraduate
-              at APJ Abdul Kalam Technological University (KTU), based in Kerala, India.
-            </p>
+          <div className="about-copy">
+            <h3 className="about-lede">
+              Fourth-year Computer Science &amp; Engineering undergraduate at APJ Abdul Kalam
+              Technological University.
+            </h3>
             <p>
               I like taking software from a real problem to a clear, dependable product.
               I’m especially interested in full-stack systems, AI-enabled knowledge tools,
@@ -51,9 +54,9 @@ export default function About() {
               ))}
             </dl>
 
-            <a href="#contact" className="text-link about-contact-link">
+            <Button href="#contact" variant="text">
               Start a conversation <span aria-hidden="true">↗</span>
-            </a>
+            </Button>
           </div>
         </div>
       </div>

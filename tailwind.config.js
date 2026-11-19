@@ -1,50 +1,43 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        'display': ['"Bebas Neue"', 'cursive'],
-        'mono': ['"JetBrains Mono"', 'monospace'],
-        'body': ['"DM Sans"', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        body: ['Plus Jakarta Sans', 'Arial', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'monospace'],
       },
       colors: {
-        ink: {
-          50: '#f7f7f5',
-          100: '#eeede9',
-          200: '#d9d7d0',
-          300: '#b8b5ab',
-          400: '#928f84',
-          500: '#76736a',
-          600: '#605d55',
-          700: '#4e4c46',
-          800: '#42403c',
-          900: '#3a3835',
-          950: '#1c1b18',
+        canvas: 'var(--bg)',
+        surface: 'var(--surface)',
+        text: 'var(--text)',
+        muted: 'var(--muted)',
+        border: 'var(--border)',
+        accent: {
+          DEFAULT: 'var(--accent)',
+          contrast: 'var(--accent-contrast)',
         },
-        paper: '#f5f4f0',
-        bone: '#e8e6e1',
+        paper: '#F5F0E6',
+        bone: '#FFFCF5',
+        ink: '#25231F',
       },
-      animation: {
-        'fade-up': 'fadeUp 0.6s ease forwards',
-        'fade-in': 'fadeIn 0.5s ease forwards',
-        'spin-slow': 'spin 8s linear infinite',
+      spacing: {
+        page: 'var(--space-page)',
+        section: 'var(--space-section)',
       },
-      keyframes: {
-        fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
+      borderRadius: {
+        card: 'var(--radius-card)',
+      },
+      boxShadow: {
+        card: 'var(--shadow-card)',
+        lift: 'var(--shadow-lift)',
+      },
+      transitionTimingFunction: {
+        editorial: 'var(--ease-editorial)',
       },
     },
   },
   plugins: [],
-}
+};

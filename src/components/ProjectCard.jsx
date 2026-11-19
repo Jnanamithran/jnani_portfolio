@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m as motion, useReducedMotion } from 'framer-motion';
 import ProjectVisual from './ProjectVisual';
+import Tag from './ui/Tag';
 
 function ArrowIcon() {
   return (
@@ -36,30 +37,50 @@ export default function ProjectCard({ project, featured = false }) {
           {project.status && <span className="project-status">{project.status}</span>}
         </div>
 
-        <div>
-          <h3 className="project-card-title">{project.title}</h3>
-          <p className="project-card-description">{project.description}</p>
+        <h3 className="project-card-title">{project.title}</h3>
+
+        <div className="project-card-case-notes">
+          <div>
+            <span>Problem</span>
+            <p>{project.problem}</p>
+          </div>
+          <div>
+            <span>What I built</span>
+            <p>{project.description}</p>
+          </div>
+          <div>
+            <span>My role</span>
+            <p className="project-card-todo">TODO: confirm</p>
+          </div>
+          <div>
+            <span>Result</span>
+            <p className="project-card-todo">TODO: add a verified outcome</p>
+          </div>
         </div>
 
-        <div className="project-card-tags" aria-label="Technologies">
-          {project.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+        <div className="project-card-tags" aria-label={`${project.title} technology stack`}>
+          {project.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
         </div>
 
-        <div className="project-card-actions">
+        <div className="project-card-actions" aria-label={`${project.title} links`}>
           {project.caseStudy && (
-            <Link className={featured ? 'project-action project-action-primary' : 'project-action'} to={`/projects/${project.caseStudy}`}>
+            <Link className="project-action project-action-primary" to={`/projects/${project.caseStudy}`}>
               Case study <ArrowIcon />
             </Link>
           )}
-          {project.demo && (
+          {project.demo ? (
             <a className="project-action" href={project.demo} target="_blank" rel="noopener noreferrer">
-              Live <ArrowIcon />
+              Live demo <ArrowIcon />
             </a>
+          ) : (
+            <span className="project-link-todo">Live demo · TODO</span>
           )}
-          {project.github && (
+          {project.github ? (
             <a className="project-action" href={project.github} target="_blank" rel="noopener noreferrer">
-              Source <ArrowIcon />
+              Repository <ArrowIcon />
             </a>
+          ) : (
+            <span className="project-link-todo">Repository · TODO</span>
           )}
           {project.blog && (
             <Link className="project-action project-action-muted" to={project.blog}>

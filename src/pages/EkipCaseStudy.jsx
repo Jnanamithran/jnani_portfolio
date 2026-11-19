@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import Seo from '../components/Seo';
 
 const STACK = ['React', 'Node.js', 'Express', 'Prisma', 'FastAPI', 'PostgreSQL', 'Qdrant', 'Ollama', 'Docker'];
 
@@ -44,16 +44,12 @@ const CAPABILITIES = [
 ];
 
 export default function EkipCaseStudy() {
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = 'EKIP Case Study | JN4NI';
-    return () => {
-      document.title = previousTitle;
-    };
-  }, []);
-
   return (
     <div className="case-study-page section-space px-6">
+      <Seo
+        title="EKIP Case Study"
+        description="A local-first workspace for source-cited answers across organizational documents, with access rules built into retrieval."
+      />
       <article className="content-width">
         <Link to="/#projects" className="text-link case-study-back">
           <span aria-hidden="true">←</span> Back to work
@@ -84,6 +80,26 @@ export default function EkipCaseStudy() {
             </Link>
           </div>
         </header>
+
+        <div className="case-study-proof">
+          <div>
+            <span>MY ROLE</span>
+            <p>TODO: confirm your contribution to the project.</p>
+          </div>
+          <div>
+            <span>OUTCOME</span>
+            <p>TODO: add a verified result, test, or demonstration.</p>
+          </div>
+        </div>
+
+        <figure className="case-study-screenshot-slot">
+          <div>
+            <span>PRODUCT SCREENSHOT / EKIP WORKSPACE</span>
+            <strong>Screenshot to come</strong>
+            <small>TODO: supply a real EKIP interface image.</small>
+          </div>
+          <figcaption>Replace this slot with an approved product screenshot.</figcaption>
+        </figure>
 
         <section className="case-study-section case-study-overview">
           <div>

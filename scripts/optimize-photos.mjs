@@ -4,13 +4,30 @@ import { extname, join, parse, resolve } from 'node:path';
 
 const sourceDirectory = resolve('src/assets/photos');
 const outputDirectory = resolve('src/assets/photos-optimized');
+const socialImageSource = resolve('public/profile.jpg');
 const sourceExtensions = new Set(['.avif', '.jpeg', '.jpg', '.png', '.webp']);
 const photoPlaces = new Map([
-  ['IMG_20260823_183125259.jpg', 'Jaisalmer, Rajasthan'],
-  ['IMG_20260827_124623048.jpg', 'Rohtang Pass, Himachal Pradesh'],
+  ['121.jpg', { name: 'Railway Platform', region: 'India' }],
+  ['123.jpg', { name: 'Railway Platform', region: 'India' }],
+  ['20260109_110652.jpg', { name: 'Kerala', region: 'India' }],
+  ['20260109_111245.jpg', { name: 'Kerala', region: 'India' }],
+  ['IMG_20260822_155424121.jpg', { name: 'Jaisalmer', region: 'Rajasthan · India' }],
+  ['IMG_20260822_155657391.jpg', { name: 'Jaisalmer', region: 'Rajasthan · India' }],
+  ['IMG_20260823_183125259.jpg', { name: 'Jaisalmer', region: 'Rajasthan · India' }],
+  ['IMG_20260827_111143906.jpg', { name: 'Manali', region: 'Himachal Pradesh · India' }],
+  ['IMG_20260827_113304929.jpg', { name: 'Solang Valley', region: 'Manali · Himachal Pradesh' }],
+  ['IMG_20260827_124623048.jpg', { name: 'Rohtang Pass', region: 'Himachal Pradesh · India' }],
+  ['Picsart_26-08-23_16-16-42-098.jpg', { name: 'Kuldhara', region: 'Jaisalmer · Rajasthan' }],
+  ['Picsart_26-08-23_19-49-56-999.jpg', { name: 'Sam Sand Dunes', region: 'Jaisalmer · Rajasthan' }],
+  ['Picsart_26-08-25_02-40-42-434.jpg', { name: 'Thar Desert', region: 'Jaisalmer · Rajasthan' }],
 ]);
 
 await mkdir(outputDirectory, { recursive: true });
+await sharp(socialImageSource)
+  .rotate()
+  .resize(1200, 630, { fit: 'cover', position: sharp.strategy.attention })
+  .jpeg({ quality: 85 })
+  .toFile(resolve('public/og-image.jpg'));
 
 const sourceFiles = (await readdir(sourceDirectory, { withFileTypes: true }))
   .filter(entry => entry.isFile() && sourceExtensions.has(extname(entry.name).toLowerCase()))

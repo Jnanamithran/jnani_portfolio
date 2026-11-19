@@ -16,15 +16,12 @@ export default function ScrollProgress() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[9997] h-[2px]" style={{ background: 'var(--border)' }}>
-      <div
-        className="h-full transition-none"
-        style={{
-          width: `${progress}%`,
-          background: 'var(--accent)',
-          transition: 'width 0.05s linear',
-        }}
-      />
+    <div
+      className="scroll-progress"
+      style={{ '--scroll-progress': progress / 100 }}
+      aria-hidden="true"
+    >
+      <span className="scroll-progress-fill" />
     </div>
   );
 }

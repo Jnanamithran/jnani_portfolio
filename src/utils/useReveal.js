@@ -6,6 +6,10 @@ export function useReveal(threshold = 0.15) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (!('IntersectionObserver' in window)) {
+      el.classList.add('visible');
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {

@@ -1,0 +1,63 @@
+.activity-card {
+  border: 1px solid var(--border);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--surface);
+}
+
+.activity-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.activity-label {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
+.activity-card-heading h3 {
+  margin: 0.7rem 0 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.activity-chart {
+  border: 1px solid var(--border);
+  padding: 1rem;
+  background: var(--bg);
+}
+
+.activity-chart img {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+}
+
+.activity-caption,
+.activity-state {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.activity-state a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 560px) {
+  .activity-card-heading {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

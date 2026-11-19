@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { blogs } from '../blogs/index';
 import BlogCard from '../components/BlogCard';
 import { useReveal } from '../utils/useReveal';
+import SectionHeading from '../components/ui/SectionHeading';
 
 const categories = ['All', ...new Set(blogs.map(blog => blog.category))];
 
@@ -16,7 +17,6 @@ function formatDate(date) {
 }
 
 export default function Blogs() {
-  const sectionRef = useReveal();
   const featuredRef = useReveal(0.1);
   const journalRef = useReveal(0.05);
   const [activeCategory, setActiveCategory] = useState('All');
@@ -30,15 +30,11 @@ export default function Blogs() {
   return (
     <section id="blogs" className="section-space px-6">
       <div className="content-width">
-        <div ref={sectionRef} className="reveal section-heading">
-          <div>
-            <span className="section-label">03 — Writing</span>
-            <div className="section-rule" />
-          </div>
-          <p className="section-intro">
-            Notes from building, debugging, and learning how systems fit together.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="04 / Writing"
+          title="Notes from the work."
+          description="Notes from building, debugging, and learning how systems fit together."
+        />
 
         {featured && (
           <Link ref={featuredRef} to={`/blog/${featured.slug}`} className="reveal featured-article">
@@ -51,7 +47,7 @@ export default function Blogs() {
                 <p className="featured-article-date">
                   {formatDate(featured.date)} <span aria-hidden="true">·</span> {featured.readTime}
                 </p>
-                <h2>{featured.title}</h2>
+                <h3>{featured.title}</h3>
                 <p className="featured-article-description">{featured.description}</p>
                 <div className="project-card-tags">
                   {featured.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}
@@ -65,7 +61,7 @@ export default function Blogs() {
 
         <div ref={journalRef} className="reveal">
           <div className="journal-toolbar">
-            <h2 className="journal-subheading">From the journal</h2>
+            <h3 className="journal-subheading">From the journal</h3>
             <div className="journal-filters" role="group" aria-label="Filter articles by category">
               {categories.map(category => (
                 <button

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, m as motion, useReducedMotion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../utils/ThemeContext';
 
@@ -12,10 +12,11 @@ const SECTION_LINKS = [
 ];
 
 export default function Navbar() {
-  const { dark, toggle } = useTheme();
+  const { dark, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const menuButtonRef = useRef(null);
   const location = useLocation();
   const isHome = location.pathname === '/';
   const reduceMotion = useReducedMotion();
@@ -48,6 +49,20 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, [isHome]);
 
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        if (menuButtonRef.current) menuButtonRef.current.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
+
   const homeLink = id => (isHome ? `#${id}` : `/#${id}`);
   const closeMenu = () => setMenuOpen(false);
 
@@ -68,11 +83,7 @@ export default function Navbar() {
     <header className="site-header">
       <nav className={`nav-shell${scrolled ? ' nav-shell-scrolled' : ''}`} aria-label="Main navigation">
         <Link to="/" className="nav-brand" aria-label="JN4NI home" onClick={closeMenu}>
-          <img
-            src={dark ? '/icons1.svg' : '/icons2.svg'}
-            alt=""
-            className="h-6 md:h-7 w-auto object-contain"
-          />
+          <span>JN4N1</span>
         </Link>
 
         <ul className="nav-links">{renderLinks(false)}</ul>
@@ -92,23 +103,25 @@ export default function Navbar() {
 
           <button
             type="button"
-            onClick={toggle}
-            aria-label={`Switch to ${dark ? 'light' : 'dark'} theme`}
             className="nav-icon-link"
+            onClick={toggleTheme}
+            aria-pressed={dark}
+            aria-label={`Switch to ${dark ? 'light' : 'dark'} mode`}
           >
-            {dark ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              {dark ? (
+                <>
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+                </>
+              ) : (
                 <path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z" />
-              </svg>
-            )}
+              )}
+            </svg>
           </button>
 
           <button
+            ref={menuButtonRef}
             type="button"
             className={`nav-menu-toggle${menuOpen ? ' is-open' : ''}`}
             onClick={() => setMenuOpen(open => !open)}
@@ -124,16 +137,17 @@ export default function Navbar() {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <motion.nav
             id="mobile-navigation"
             className="mobile-navigation"
+            aria-label="Mobile navigation"
             initial={reduceMotion ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: reduceMotion ? 0 : 0.2 }}
           >
             <ul>{renderLinks(true)}</ul>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>
