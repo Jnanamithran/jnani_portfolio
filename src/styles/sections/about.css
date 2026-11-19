@@ -10,17 +10,29 @@
   width: min(100%, 28rem);
   justify-self: center;
   margin: 0;
+  border: 1px solid var(--border);
+  padding: 0.65rem;
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s ease;
 }
 
 .about-portrait img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center;
+  object-position: center 38%;
   filter: grayscale(1);
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 44%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, #000 44%, transparent 100%);
+  transition: filter 0.4s ease;
+}
+
+.about-portrait:hover img {
+  filter: grayscale(0);
+}
+
+.about-portrait:hover {
+  border-color: var(--accent);
 }
 
 .about-portrait figcaption {
