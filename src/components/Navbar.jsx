@@ -82,8 +82,8 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <nav className={`nav-shell${scrolled ? ' nav-shell-scrolled' : ''}`} aria-label="Main navigation">
-        <Link to="/" className="nav-brand" aria-label="JN4NI home" onClick={closeMenu}>
-          <span>JN4N1</span>
+        <Link to="/" className="nav-brand" aria-label="Jnani home" onClick={closeMenu}>
+          <span>JNANI</span>
         </Link>
 
         <ul className="nav-links">{renderLinks(false)}</ul>

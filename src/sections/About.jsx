@@ -1,6 +1,5 @@
 import SectionHeading from '../components/ui/SectionHeading';
 import Button from '../components/ui/Button';
-import aboutPortrait from '../assets/photos-optimized/IMG-20261019-WA0061.webp';
 
 const DETAILS = [
   { label: 'Based in', value: 'Kerala, India' },
@@ -21,10 +20,10 @@ export default function About() {
         <div className="about-layout">
           <figure className="about-portrait">
             <img
-              src={aboutPortrait}
-              alt="Black-and-white portrait of Jnani outdoors at night"
-              width="1800"
-              height="1013"
+              src="/profile.jpg"
+              alt="Portrait of Jnani outdoors among plants"
+              width="731"
+              height="707"
               loading="lazy"
               decoding="async"
             />

@@ -43,7 +43,9 @@
 
   .nav-links {
     display: flex;
+    flex: 1;
     align-items: center;
+    justify-content: center;
     gap: clamp(1rem, calc(2.4vw * var(--size-scale)), 2rem);
     list-style: none;
   }
@@ -180,6 +182,10 @@
 
   .nav-links {
     display: none;
+  }
+
+  .nav-controls {
+    margin-right: auto;
   }
 
   .nav-controls {
