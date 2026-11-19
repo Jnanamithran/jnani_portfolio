@@ -9,19 +9,7 @@ export default function BlogCard({ blog }) {
   return (
     <Link
       to={`/blog/${slug}`}
-      className="group block p-6 border transition-all duration-200"
-      style={{
-        borderColor: 'var(--border)',
-        background: 'var(--card-bg)',
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'var(--fg)';
-        e.currentTarget.style.transform = 'translateX(4px)';
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.borderColor = 'var(--border)';
-        e.currentTarget.style.transform = 'translateX(0)';
-      }}
+      className="blog-card group block p-6"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 space-y-2">

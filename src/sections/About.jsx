@@ -15,8 +15,8 @@ export default function About() {
 
         {/* Section label */}
         <div ref={sectionRef} className="reveal mb-16">
-          <span className="section-label">01 — About</span>
-          <div className="mt-3 w-10 h-px" style={{ background: 'var(--fg)' }} />
+          <span className="section-label">02 — About</span>
+          <div className="mt-3 w-10 h-px" style={{ background: 'var(--accent)' }} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">

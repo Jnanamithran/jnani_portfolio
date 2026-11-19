@@ -53,8 +53,8 @@ export default function Contact() {
       <div className="max-w-5xl mx-auto">
         {/* Label */}
         <div ref={labelRef} className="reveal mb-16">
-          <span className="section-label">04 — Contact</span>
-          <div className="mt-3 w-10 h-px" style={{ background: 'var(--fg)' }} />
+          <span className="section-label">09 — Contact</span>
+          <div className="mt-3 w-10 h-px" style={{ background: 'var(--accent)' }} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -101,14 +101,16 @@ export default function Contact() {
             {status === 'success' ? (
               <div
                 className="p-8 border flex flex-col items-center gap-4 text-center"
-                style={{ borderColor: 'var(--fg)', background: 'var(--card-bg)' }}
+                style={{ borderColor: 'var(--accent)', background: 'var(--card-bg)' }}
               >
-                <div className="w-10 h-10 flex items-center justify-center" style={{ border: '1px solid var(--fg)' }}>
+                <div className="w-10 h-10 flex items-center justify-center" style={{ border: '1px solid var(--accent)' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <p className="font-body text-base" style={{ color: 'var(--fg)' }}>Message sent. I'll be in touch soon.</p>
+                <p className="font-body text-base" style={{ color: 'var(--accent-text)' }}>
+                  Message sent. I'll be in touch soon.
+                </p>
                 <button
                   onClick={() => setStatus('idle')}
                   className="font-mono text-xs tracking-widest uppercase transition-opacity hover:opacity-60"

@@ -21,7 +21,7 @@ export default function ScrollProgress() {
         className="h-full transition-none"
         style={{
           width: `${progress}%`,
-          background: 'var(--fg)',
+          background: 'var(--accent)',
           transition: 'width 0.05s linear',
         }}
       />

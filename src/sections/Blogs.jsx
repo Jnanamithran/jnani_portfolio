@@ -11,8 +11,8 @@ export default function Blogs() {
       <div className="max-w-5xl mx-auto">
         {/* Label */}
         <div ref={labelRef} className="reveal mb-16">
-          <span className="section-label">03 — Writing</span>
-          <div className="mt-3 w-10 h-px" style={{ background: 'var(--fg)' }} />
+          <span className="section-label">04 — Writing</span>
+          <div className="mt-3 w-10 h-px" style={{ background: 'var(--accent)' }} />
           <p className="mt-6 font-body text-base max-w-lg" style={{ color: 'var(--fg-muted)' }}>
             Technical deep-dives, architecture breakdowns, and lessons from shipping real systems.
           </p>

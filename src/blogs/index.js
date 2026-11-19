@@ -1,5 +1,13 @@
 export const blogs = [
   {
+    slug: 'ekip-enterprise-knowledge-intelligence',
+    title: 'EKIP: Building a Local-First Enterprise Knowledge Intelligence Platform',
+    date: '2026-11-19',
+    description: 'Exploring a document knowledge platform that combines multimodal ingestion, hybrid retrieval, locally hosted LLMs, citations, and role-based access controls.',
+    tags: ['AI', 'RAG', 'Knowledge Management', 'FastAPI', 'Qdrant', 'Ollama'],
+    readTime: '8 min read',
+  },
+  {
     slug: 'project-leafyloop-ecommerce',
     title: 'Project LeafyLoop: Building a Production-Grade E-commerce Platform for Kerala\'s Plant Lovers',
     date: '2026-04-04',

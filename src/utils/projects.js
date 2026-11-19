@@ -1,5 +1,16 @@
 export const projects = [
   {
+    id: 5,
+    title: 'EKIP',
+    description:
+      'A local-first enterprise knowledge platform that indexes organizational documents and answers questions with citations. Combines hybrid retrieval, locally hosted LLMs, and role-based access controls across a React, Express, and FastAPI stack.',
+    tags: ['React', 'Node.js', 'FastAPI', 'PostgreSQL', 'Qdrant', 'Ollama'],
+    image: null,
+    demo: null,
+    github: 'https://github.com/Jnanamithran/ekip-platform',
+    blog: '/blog/ekip-enterprise-knowledge-intelligence',
+  },
+  {
     id: 1,
     title: 'LeafyLoop',
     description:

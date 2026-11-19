@@ -162,7 +162,7 @@ export default function BlogPost() {
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        .prose-jn4ni a:hover { opacity: 0.6; }
+        .prose-jn4ni a:hover { color: var(--accent-text); }
         .prose-jn4ni ul, .prose-jn4ni ol {
           padding-left: 1.5rem;
           margin-bottom: 1.25rem;

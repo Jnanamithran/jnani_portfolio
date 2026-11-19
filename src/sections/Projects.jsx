@@ -12,8 +12,8 @@ export default function Projects() {
         {/* Label */}
         <div ref={labelRef} className="reveal mb-16 flex items-end justify-between flex-wrap gap-4">
           <div>
-            <span className="section-label">02 — Projects</span>
-            <div className="mt-3 w-10 h-px" style={{ background: 'var(--fg)' }} />
+            <span className="section-label">03 — Projects</span>
+            <div className="mt-3 w-10 h-px" style={{ background: 'var(--accent)' }} />
           </div>
           <p className="font-body text-sm max-w-xs text-right" style={{ color: 'var(--fg-muted)' }}>
             Selected work. Hover to explore.

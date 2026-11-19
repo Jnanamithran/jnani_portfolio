@@ -154,7 +154,7 @@ export default function Hero() {
             className="absolute top-0 left-0 w-full"
             style={{
               height: '40%',
-              background: 'var(--fg)',
+              background: 'var(--accent)',
               animation: 'scrollDot 1.5s ease-in-out infinite',
             }}
           />

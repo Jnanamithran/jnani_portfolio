@@ -18,14 +18,24 @@ export default function Navbar() {
   const navLinks = isHome
     ? [
         { label: 'Home', href: '#home' },
+      { label: 'Dashboard', href: '#dashboard' },
         { label: 'Projects', href: '#projects' },
         { label: 'Blogs', href: '#blogs' },
+        { label: 'Building', href: '#currently-building' },
+        { label: 'Terminal', href: '#terminal' },
+        { label: 'Beyond', href: '#beyond-code' },
+        { label: 'GitHub', href: '#github-activity' },
         { label: 'Contact', href: '#contact' },
       ]
     : [
         { label: 'Home', href: '/' },
+      { label: 'Dashboard', href: '/#dashboard' },
         { label: 'Projects', href: '/#projects' },
         { label: 'Blogs', href: '/#blogs' },
+        { label: 'Building', href: '/#currently-building' },
+        { label: 'Terminal', href: '/#terminal' },
+        { label: 'Beyond', href: '/#beyond-code' },
+        { label: 'GitHub', href: '/#github-activity' },
         { label: 'Contact', href: '/#contact' },
       ];
 
@@ -49,7 +59,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-4 xl:gap-8">
           {navLinks.map((link) => (
             <li key={link.label}>
               {link.href.startsWith('#') || link.href.startsWith('/') ? (
@@ -126,9 +136,9 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className="md:hidden absolute top-full left-4 right-4 overflow-hidden transition-all duration-300"
+        className="md:hidden absolute top-full left-4 right-4 overflow-y-auto transition-all duration-300"
         style={{
-          maxHeight: menuOpen ? '300px' : '0',
+          maxHeight: menuOpen ? 'calc(100vh - 5rem)' : '0',
           background: 'var(--bg)',
           border: menuOpen ? '1px solid var(--border)' : 'none',
         }}
